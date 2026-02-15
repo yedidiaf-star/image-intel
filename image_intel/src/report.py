@@ -129,6 +129,7 @@ def create_report(images_data, map_html, timeline_html, analysis):
     </head>
     <body>
         <div class="header">
+            <p>בס״ד</p>
             <h1>Image Intel Report</h1>
             <p>נוצר ב-{now}</p>
         </div>
@@ -170,7 +171,21 @@ def create_report(images_data, map_html, timeline_html, analysis):
             <h2>מכשירים</h2>
             {cameras_html}
         </div>
-
+            
+        <button onclick = "downloadPDF()">הורד כ-PDF</button>
+        <script>
+        function downloadPDF() {{
+            window.print();
+        }}
+        </script>
+        <style>
+        @media print {{
+            button {{
+                display: none;
+            }}
+        }}
+        </style>
+        
         <div style="text-align:center; color:#888; margin-top:30px; padding-bottom: 20px;">
             Image Intel | האקתון 2025
         </div>
