@@ -1,3 +1,4 @@
+from report import create_report
 from flask import Flask, render_template, request
 import os
 
@@ -69,7 +70,7 @@ def analyze_images():
     analysis = fake_analyze(images_data)
 
     # שלב 5: הרכבת דו"ח (צוות 3, זוג B - השותפים שלך לרביעייה!)
-    report_html = fake_create_report(images_data, map_html, timeline_html, analysis)
+    report_html = create_report(images_data, map_html, timeline_html, analysis)
 
     # מחזירים למשתמש את הדו"ח הסופי
     return report_html
