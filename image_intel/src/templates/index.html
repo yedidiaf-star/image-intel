@@ -2,10 +2,10 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-width=1.0">
+    <!-- תיקון: היה initial-width=1.0 במקום initial-scale=1.0 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Intel - מודיעין חזותי</title>
     <style>
-        /* הגדרות צבעים למראה מודיעיני וטכנולוגי (Dark Mode) */
         :root {
             --bg-color: #0f172a;
             --container-bg: #1e293b;
@@ -50,7 +50,6 @@
             margin-bottom: 40px;
         }
 
-        /* עיצוב אזור הגרירה */
         .file-drop-area {
             border: 2px dashed var(--border-color);
             border-radius: 12px;
@@ -61,7 +60,6 @@
             cursor: pointer;
         }
 
-        /* שינוי צבע כשמרחפים או גוררים קובץ מעל האזור */
         .file-drop-area:hover, .file-drop-area.dragover {
             border-color: var(--accent-color);
             background-color: rgba(56, 189, 248, 0.08);
@@ -79,7 +77,6 @@
             color: #64748b;
         }
 
-        /* הסתרת כפתור בחירת הקבצים המכוער הרגיל של הדפדפן */
         input[type="file"] {
             display: none;
         }
@@ -112,7 +109,6 @@
         <p>מערכת סריקה וניתוח נתוני EXIF</p>
 
         <form action="/analyze" method="POST" enctype="multipart/form-data">
-
             <div class="file-drop-area" id="drop-area">
                 <span class="file-msg" id="file-msg">לחץ כאן או גרור תמונות לכאן</span>
                 <span class="file-msg-sub" id="file-msg-sub">אפשר לבחור כמה תמונות יחד</span>
@@ -124,18 +120,15 @@
     </div>
 
     <script>
-        const dropArea = document.getElementById('drop-area');
+    const dropArea = document.getElementById('drop-area');
     const fileInput = document.getElementById('file-input');
     const fileMsg = document.getElementById('file-msg');
     const fileMsgSub = document.getElementById('file-msg-sub');
 
-    // השדרוג שלנו: מילון שישמור קבצים לפי השם שלהם ומונע כפילויות
     const filesMap = new Map();
 
-    // פתיחת חלון בחירה בלחיצה
     dropArea.addEventListener('click', () => fileInput.click());
 
-    // מניעת פתיחת התמונה בדפדפן בטעות
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
         dropArea.addEventListener(eventName, preventDefaults, false);
     });
@@ -145,7 +138,6 @@
         e.stopPropagation();
     }
 
-    // עיצוב אזור הגרירה כשמרחפים מעליו
     ['dragenter', 'dragover'].forEach(eventName => {
         dropArea.addEventListener(eventName, () => dropArea.classList.add('dragover'), false);
     });
@@ -153,49 +145,32 @@
         dropArea.addEventListener(eventName, () => dropArea.classList.remove('dragover'), false);
     });
 
-    // === הפונקציה החכמה שמתקנת את הבאג ===
     function addFilesToList(newFiles) {
-        // 1. עוברים על כל הקבצים החדשים שקיבלנו
         for (let i = 0; i < newFiles.length; i++) {
             const file = newFiles[i];
-            // 2. מכניסים למילון: המפתח הוא שם הקובץ.
-            // אם כבר העלינו קובץ עם אותו שם - הוא פשוט יוחלף!
             filesMap.set(file.name, file);
         }
 
-        // 3. עכשיו ניצור "ארנק" (DataTransfer) חדש ונקי
         const dt = new DataTransfer();
-
-        // 4. נרוקן את כל הקבצים הייחודיים מהמילון לתוך הארנק שלנו
         filesMap.forEach((file) => {
             dt.items.add(file);
         });
 
-        // 5. נעדכן את הטופס האמיתי שישלח ל-Python
         fileInput.files = dt.files;
         updateFileName();
     }
 
-    // כשהמשתמש משחרר קבצים בגרירה
     dropArea.addEventListener('drop', (e) => {
         addFilesToList(e.dataTransfer.files);
     });
 
-    // כשהמשתמש בוחר קבצים דרך החלון הרגיל
-    // כשהמשתמש בוחר קבצים דרך החלון הרגיל
     fileInput.addEventListener('change', (e) => {
-        // אנחנו שומרים את הקבצים שהמשתמש בחר הרגע
         const selectedFiles = e.target.files;
-
-        // אם הוא באמת בחר משהו, נוסיף אותם לרשימה החכמה שלנו
         if (selectedFiles.length > 0) {
             addFilesToList(selectedFiles);
         }
-
-        // הערה: מחקנו מכאן את האיפוס שגרם לבאג! עכשיו הקבצים יישארו בטופס ויישלחו לשרת.
     });
 
-    // עדכון הטקסט על המסך שיראה לנו רק את הכמות הייחודית
     function updateFileName() {
         const totalFiles = fileInput.files.length;
         if (totalFiles > 0) {
