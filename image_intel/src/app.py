@@ -1,6 +1,7 @@
 from extractor import extract_all
 from report import create_report
 from flask import Flask, render_template, request
+from map_view import create_map
 import os
 
 # הוספנו הגדרה מפורשת לתיקיית ה-templates
@@ -69,7 +70,7 @@ def analyze_images():
 
     # מכאן הקוד ממשיך כרגיל לשאר הצוותים...
     images_data = extract_all(folder_path)
-    map_html = fake_create_map(images_data)
+    map_html = create_map(images_data)
     timeline_html = fake_create_timeline(images_data)
     analysis = fake_analyze(images_data)
     report_html = create_report(images_data, map_html, timeline_html, analysis)

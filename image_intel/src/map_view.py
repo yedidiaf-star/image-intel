@@ -76,8 +76,7 @@ def create_map(images_data):
             icon=icon
         ).add_to(m)
 
-        index += 1
 
     output_file = "my_photos_map.html"
     m.save(output_file)
-    return output_file
+    return m._repr_html_()
