@@ -56,7 +56,7 @@ def extract_metadata(image_path):
               camera_make, camera_model, has_gps
     """
     path = Path(image_path)
-    img = img = Image.open(image_path)
+    img = Image.open(image_path)
     exif = img._getexif()
     data = {}
     for tag_id, value in exif.items():
@@ -65,11 +65,12 @@ def extract_metadata(image_path):
     print(data)
     exif_dict = {
         "filename": path.name,
-        "datatime": datatime(data),
+        "datetime": datatime(data),
         "latitude": latitude(data),
         "longitude": longitude(data),
         "camera_make": camera_make(data),
-        "camera_model": camera_model(data)
+        "camera_model": camera_model(data),
+        "has_gps": has_gps(data)
     }
     return exif_dict
 
