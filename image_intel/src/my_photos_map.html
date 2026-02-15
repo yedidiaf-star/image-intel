@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_41c221987a6d21b9df1b80d1c83744c7 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_41c221987a6d21b9df1b80d1c83744c7" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_41c221987a6d21b9df1b80d1c83744c7 = L.map(
+                "map_41c221987a6d21b9df1b80d1c83744c7",
+                {
+                    center: [31.925483333333336, 35.00065],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_87923cb3a9bb426ffa69ceca5b7f9cca = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_87923cb3a9bb426ffa69ceca5b7f9cca.addTo(map_41c221987a6d21b9df1b80d1c83744c7);
+        
+    
+            var poly_line_25f22a66893126d92473e53e9c8170b6 = L.polyline(
+                [[32.085300000000004, 34.7818], [32.080400000000004, 34.780499999999996], [32.066700000000004, 34.7667], [31.7683, 35.2137], [31.778, 35.2354], [31.7742, 35.2258]],
+                {"bubblingMouseEvents": true, "color": "Blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "Blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.6, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_41c221987a6d21b9df1b80d1c83744c7);
+        
+    
+            poly_line_25f22a66893126d92473e53e9c8170b6.bindTooltip(
+                `<div>
+                     מסלול כרונולוגי
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_ebcc4b731a5f5a165864ea787288ff72 = L.marker(
+                [32.085300000000004, 34.7818],
+                {
+}
+            ).addTo(map_41c221987a6d21b9df1b80d1c83744c7);
+        
+    
+            var icon_b8d4967fc32f15cf6d17e9f630b910b1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5d77d1b39003ed107d5178c4d44b5f90 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_1fd311df18039595ecd0c5fdbb0dc8fb = $(`<div id="html_1fd311df18039595ecd0c5fdbb0dc8fb" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: sans-serif; width: 200px;">                         <h4>IMG_001.jpg</h4>                         <p><b>Time:</b> 2025:01:12 08:30:00</p>                         <p><b>Device:</b> Galaxy S23</p>                         <img src="IMG_001.jpg" width="180px" style="border-radius: 5px;">                     </div>                 </div>`)[0];
+                popup_5d77d1b39003ed107d5178c4d44b5f90.setContent(html_1fd311df18039595ecd0c5fdbb0dc8fb);
+            
+        
+
+        marker_ebcc4b731a5f5a165864ea787288ff72.bindPopup(popup_5d77d1b39003ed107d5178c4d44b5f90)
+        ;
+
+        
+    
+    
+                marker_ebcc4b731a5f5a165864ea787288ff72.setIcon(icon_b8d4967fc32f15cf6d17e9f630b910b1);
+            
+    
+            var marker_4dacbc3d9f0526851140595c4d3b5f0a = L.marker(
+                [32.080400000000004, 34.780499999999996],
+                {
+}
+            ).addTo(map_41c221987a6d21b9df1b80d1c83744c7);
+        
+    
+            var icon_81bbad01b1f9a05c60ab372948197943 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cde5e655e0609eecfd55519672367298 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_4a84ab8a2f0854fdb8cdee3820c70323 = $(`<div id="html_4a84ab8a2f0854fdb8cdee3820c70323" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: sans-serif; width: 200px;">                         <h4>IMG_002.jpg</h4>                         <p><b>Time:</b> 2025:01:12 11:15:00</p>                         <p><b>Device:</b> Galaxy S23</p>                         <img src="IMG_002.jpg" width="180px" style="border-radius: 5px;">                     </div>                 </div>`)[0];
+                popup_cde5e655e0609eecfd55519672367298.setContent(html_4a84ab8a2f0854fdb8cdee3820c70323);
+            
+        
+
+        marker_4dacbc3d9f0526851140595c4d3b5f0a.bindPopup(popup_cde5e655e0609eecfd55519672367298)
+        ;
+
+        
+    
+    
+                marker_4dacbc3d9f0526851140595c4d3b5f0a.setIcon(icon_81bbad01b1f9a05c60ab372948197943);
+            
+    
+            var marker_89fa423287607f00e3e2d03bc32356aa = L.marker(
+                [32.066700000000004, 34.7667],
+                {
+}
+            ).addTo(map_41c221987a6d21b9df1b80d1c83744c7);
+        
+    
+            var icon_b819301401ebddcb45fe8df3d5347151 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_af7fa676217082abeeee947a5771329d = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_5f0fd559e58ab4261d8da84646c43c0f = $(`<div id="html_5f0fd559e58ab4261d8da84646c43c0f" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: sans-serif; width: 200px;">                         <h4>IMG_003.jpg</h4>                         <p><b>Time:</b> 2025:01:12 14:00:00</p>                         <p><b>Device:</b> Galaxy S23</p>                         <img src="IMG_003.jpg" width="180px" style="border-radius: 5px;">                     </div>                 </div>`)[0];
+                popup_af7fa676217082abeeee947a5771329d.setContent(html_5f0fd559e58ab4261d8da84646c43c0f);
+            
+        
+
+        marker_89fa423287607f00e3e2d03bc32356aa.bindPopup(popup_af7fa676217082abeeee947a5771329d)
+        ;
+
+        
+    
+    
+                marker_89fa423287607f00e3e2d03bc32356aa.setIcon(icon_b819301401ebddcb45fe8df3d5347151);
+            
+    
+            var marker_f5e63503a711b7301e09a1e34a5755dc = L.marker(
+                [31.7683, 35.2137],
+                {
+}
+            ).addTo(map_41c221987a6d21b9df1b80d1c83744c7);
+        
+    
+            var icon_60d25ac6625382cac241c9222503d655 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_74841d1c0cf6c8c2ee5461db6770b7fe = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_bdf637ea578875bda638a88e54ab38ff = $(`<div id="html_bdf637ea578875bda638a88e54ab38ff" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: sans-serif; width: 200px;">                         <h4>IMG_004.jpg</h4>                         <p><b>Time:</b> 2025:01:13 09:00:00</p>                         <p><b>Device:</b> iPhone 15 Pro</p>                         <img src="IMG_004.jpg" width="180px" style="border-radius: 5px;">                     </div>                 </div>`)[0];
+                popup_74841d1c0cf6c8c2ee5461db6770b7fe.setContent(html_bdf637ea578875bda638a88e54ab38ff);
+            
+        
+
+        marker_f5e63503a711b7301e09a1e34a5755dc.bindPopup(popup_74841d1c0cf6c8c2ee5461db6770b7fe)
+        ;
+
+        
+    
+    
+                marker_f5e63503a711b7301e09a1e34a5755dc.setIcon(icon_60d25ac6625382cac241c9222503d655);
+            
+    
+            var marker_1aee59b8967d55da568754b8c46760c6 = L.marker(
+                [31.778, 35.2354],
+                {
+}
+            ).addTo(map_41c221987a6d21b9df1b80d1c83744c7);
+        
+    
+            var icon_74e52ee99925f04cf80ea6e9b1d2fb4a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_799cde46fdd18382371759464d79f036 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_9ef10ef865a7c133feb96c756e4742ff = $(`<div id="html_9ef10ef865a7c133feb96c756e4742ff" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: sans-serif; width: 200px;">                         <h4>IMG_005.jpg</h4>                         <p><b>Time:</b> 2025:01:13 12:30:00</p>                         <p><b>Device:</b> iPhone 15 Pro</p>                         <img src="IMG_005.jpg" width="180px" style="border-radius: 5px;">                     </div>                 </div>`)[0];
+                popup_799cde46fdd18382371759464d79f036.setContent(html_9ef10ef865a7c133feb96c756e4742ff);
+            
+        
+
+        marker_1aee59b8967d55da568754b8c46760c6.bindPopup(popup_799cde46fdd18382371759464d79f036)
+        ;
+
+        
+    
+    
+                marker_1aee59b8967d55da568754b8c46760c6.setIcon(icon_74e52ee99925f04cf80ea6e9b1d2fb4a);
+            
+    
+            var marker_3feddbbb0c1896186419f216aa2d73e8 = L.marker(
+                [31.7742, 35.2258],
+                {
+}
+            ).addTo(map_41c221987a6d21b9df1b80d1c83744c7);
+        
+    
+            var icon_61184a6882ed87aa2e95b9a1808393b2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6168c23f377c5bdc6fc4ad189ff7820a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_e8e6b59a08df905542fce361b3a464e4 = $(`<div id="html_e8e6b59a08df905542fce361b3a464e4" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: sans-serif; width: 200px;">                         <h4>IMG_006.jpg</h4>                         <p><b>Time:</b> 2025:01:13 16:45:00</p>                         <p><b>Device:</b> iPhone 15 Pro</p>                         <img src="IMG_006.jpg" width="180px" style="border-radius: 5px;">                     </div>                 </div>`)[0];
+                popup_6168c23f377c5bdc6fc4ad189ff7820a.setContent(html_e8e6b59a08df905542fce361b3a464e4);
+            
+        
+
+        marker_3feddbbb0c1896186419f216aa2d73e8.bindPopup(popup_6168c23f377c5bdc6fc4ad189ff7820a)
+        ;
+
+        
+    
+    
+                marker_3feddbbb0c1896186419f216aa2d73e8.setIcon(icon_61184a6882ed87aa2e95b9a1808393b2);
+            
+</script>
+</html>

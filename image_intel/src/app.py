@@ -3,6 +3,7 @@ from report import create_report
 from map_view import create_map
 from analyzer import analyze
 from flask import Flask, render_template, request
+from map_view import create_map
 import os
 
 # הוספנו הגדרה מפורשת לתיקיית ה-templates
