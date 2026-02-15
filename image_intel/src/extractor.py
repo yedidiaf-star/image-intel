@@ -57,23 +57,25 @@ def extract_metadata(image_path):
     """
     path = Path(image_path)
     img = Image.open(image_path)
-    exif = img._getexif()
-    data = {}
-    for tag_id, value in exif.items():
-        tag = TAGS.get(tag_id, tag_id)
-        data[tag] = value
-    print(data)
-    exif_dict = {
-        "filename": path.name,
-        "datetime": datatime(data),
-        "latitude": latitude(data),
-        "longitude": longitude(data),
-        "camera_make": camera_make(data),
-        "camera_model": camera_model(data),
-        "has_gps": has_gps(data)
-    }
-    return exif_dict
-
+    try:
+        exif = img._getexif()
+        data = {}
+        for tag_id, value in exif.items():
+            tag = TAGS.get(tag_id, tag_id)
+            data[tag] = value
+        print(data)
+        exif_dict = {
+            "filename": path.name,
+            "datetime": datatime(data),
+            "latitude": latitude(data),
+            "longitude": longitude(data),
+            "camera_make": camera_make(data),
+            "camera_model": camera_model(data),
+            "has_gps": has_gps(data)
+        }
+        return exif_dict
+    except Exception:
+        return False
 def extract_all(folder_path):
     """
     שולף EXIF מכל התמונות בתיקייה.
