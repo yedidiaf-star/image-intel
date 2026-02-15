@@ -45,23 +45,46 @@ def create_map(images_data):
 
     folium.PolyLine(
         locations=path_coordinates,
-        color="Blue",
+        color="Black",
         weight=3,
         opacity=0.6,
         tooltip="מסלול כרונולוגי"
     ).add_to(m)
 
+    available_colors = ['red', 'blue', 'green', 'purple', 'orange', 'darkred', 'lightred', 'beige', 'darkblue',
+                        'darkgreen', 'cadetblue', 'darkpurple', 'white', 'pink', 'lightblue', 'lightgreen', 'gray',
+                        'black', 'lightgray']
+
+    device_color_map = {}
+    color_index = 0
+
 
     for image in gps_image:
+        model = image["camera_model"]
+
+        if model not in device_color_map:
+            device_color_map[model] = available_colors[color_index % len(available_colors)]
+            color_index += 1
+
+        chosen_color = device_color_map[model]
 
         html = f"""
                     <div style="font-family: sans-serif; width: 200px;">
                         <h4>{image['filename']}</h4>
                         <p><b>Time:</b> {image['datetime']}</p>
-                        <p><b>Device:</b> {image["camera_model"]}</p>
+                        <p><b>Device:</b> {model}</p>
                         <img src="{image['filename']}" width="180px" style="border-radius: 5px;">
                     </div>
                 """
+        icon = folium.Icon(color=chosen_color, icon="camera", prefix="fa")
+
+        folium.Marker(
+            location=[image["latitude"], image["longitude"]],
+            popup=folium.Popup(html, max_width=250),
+            icon=icon,
+            tooltip=f"Device: {model}"  # מציג את שם המכשיר בריחופ עם העכבר
+        ).add_to(m)
+
         try:
             icon = folium.CustomIcon(
                 image["filename"],
@@ -76,8 +99,9 @@ def create_map(images_data):
             icon=icon
         ).add_to(m)
 
-        index += 1
+
 
     output_file = "my_photos_map.html"
     m.save(output_file)
     return output_file
+print(create_map(fake_data))
