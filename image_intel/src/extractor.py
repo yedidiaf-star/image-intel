@@ -65,7 +65,7 @@ def extract_metadata(image_path):
             data[tag] = value
         print(data)
         exif_dict = {
-            "filename": path.name,
+            "filename": path,
             "datetime": datatime(data),
             "latitude": latitude(data),
             "longitude": longitude(data),
@@ -75,7 +75,7 @@ def extract_metadata(image_path):
         }
         return exif_dict
     except Exception:
-        return False
+            return  None
 def extract_all(folder_path):
     """
     שולף EXIF מכל התמונות בתיקייה.
