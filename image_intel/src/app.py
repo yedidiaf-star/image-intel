@@ -1,9 +1,9 @@
 from extractor import extract_all
 from report import create_report
-from analyzer import analyze
-from  timeline import create_timeline
 from map_view import create_map
+from analyzer import analyze
 from flask import Flask, render_template, request
+from timeline import create_timeline
 import os
 
 # הוספנו הגדרה מפורשת לתיקיית ה-templates
@@ -91,12 +91,18 @@ def analyze_images():
 
     # ה. שליחת הנתיב של התיקייה שלנו לשאר המודולים
     folder_path = os.path.abspath(UPLOAD_FOLDER)
+    print(folder_path)
 
     # מכאן הקוד ממשיך כרגיל לשאר הצוותים...
     images_data = extract_all(folder_path)
     map_html = create_map(images_data)
     timeline_html = create_timeline(images_data)
     analysis = analyze(images_data)
+    print(len(images_data))
+    map_html = create_map(images_data)
+    timeline_html = create_timeline(images_data)
+    analysis = analyze(images_data)
+
     report_html = create_report(images_data, map_html, timeline_html, analysis)
 
     return report_html

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_100e82befccb2976efc23464ecb2d8ef {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_100e82befccb2976efc23464ecb2d8ef" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_100e82befccb2976efc23464ecb2d8ef = L.map(
+                "map_100e82befccb2976efc23464ecb2d8ef",
+                {
+                    center: [31.9268, 34.997749999999996],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_374b98ce3f8ec3d0bf419890ce1b4b9b = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_374b98ce3f8ec3d0bf419890ce1b4b9b.addTo(map_100e82befccb2976efc23464ecb2d8ef);
+        
+    
+            var poly_line_a81daefde3d070305449eac9c7f7791a = L.polyline(
+                [[32.0853, 34.7818], [31.7683, 35.2137]],
+                {"bubblingMouseEvents": true, "color": "Blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "Blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.6, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_100e82befccb2976efc23464ecb2d8ef);
+        
+    
+            poly_line_a81daefde3d070305449eac9c7f7791a.bindTooltip(
+                `<div>
+                     מסלול כרונולוגי
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_14d17e7c5dfdf646f1321dea6d9e5dac = L.marker(
+                [32.0853, 34.7818],
+                {
+}
+            ).addTo(map_100e82befccb2976efc23464ecb2d8ef);
+        
+    
+            var icon_d454e111cc6cae97b0b2f147e24b6d13 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "camera",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_94f4adfdb35a33b81829151552b38fee = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_6363964f7108833f52759dbf8476ab20 = $(`<div id="html_6363964f7108833f52759dbf8476ab20" style="width: 100.0%; height: 100.0%;">  <div style="font-family: sans-serif; width: 220px;">                         <h4 style="margin: 0 0 10px 0;">📷 test1.jpg</h4>                          <p style="margin: 5px 0;"><b>Photo #:</b> 1</p>                            <p style="margin: 5px 0;"><b>Time:</b> 2025-01-12 08:30:00</p>                            <p style="margin: 5px 0;"><b>Device:</b> Galaxy S23</p>                            <p style="margin: 5px 0;"><b>Coordinates:</b><br>                             32.085300, 34.781800</p>                              </div>        </div>`)[0];
+                popup_94f4adfdb35a33b81829151552b38fee.setContent(html_6363964f7108833f52759dbf8476ab20);
+            
+        
+
+        marker_14d17e7c5dfdf646f1321dea6d9e5dac.bindPopup(popup_94f4adfdb35a33b81829151552b38fee)
+        ;
+
+        
+    
+    
+            marker_14d17e7c5dfdf646f1321dea6d9e5dac.bindTooltip(
+                `<div>
+                     Galaxy S23 - 2025-01-12 08:30:00
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_14d17e7c5dfdf646f1321dea6d9e5dac.setIcon(icon_d454e111cc6cae97b0b2f147e24b6d13);
+            
+    
+            var marker_4add6bff02656d4b1eb4a3125219233a = L.marker(
+                [31.7683, 35.2137],
+                {
+}
+            ).addTo(map_100e82befccb2976efc23464ecb2d8ef);
+        
+    
+            var icon_f138198d0a733ef648e8e6076c31b94b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "camera",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_59350b2194e6f179e23483c3168af65d = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_e54a4b2a944ff7debd4505d6c01be6e9 = $(`<div id="html_e54a4b2a944ff7debd4505d6c01be6e9" style="width: 100.0%; height: 100.0%;">  <div style="font-family: sans-serif; width: 220px;">                         <h4 style="margin: 0 0 10px 0;">📷 test2.jpg</h4>                          <p style="margin: 5px 0;"><b>Photo #:</b> 2</p>                            <p style="margin: 5px 0;"><b>Time:</b> 2025-01-13 09:00:00</p>                            <p style="margin: 5px 0;"><b>Device:</b> iPhone 15 Pro</p>                            <p style="margin: 5px 0;"><b>Coordinates:</b><br>                             31.768300, 35.213700</p>                              </div>        </div>`)[0];
+                popup_59350b2194e6f179e23483c3168af65d.setContent(html_e54a4b2a944ff7debd4505d6c01be6e9);
+            
+        
+
+        marker_4add6bff02656d4b1eb4a3125219233a.bindPopup(popup_59350b2194e6f179e23483c3168af65d)
+        ;
+
+        
+    
+    
+            marker_4add6bff02656d4b1eb4a3125219233a.bindTooltip(
+                `<div>
+                     iPhone 15 Pro - 2025-01-13 09:00:00
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4add6bff02656d4b1eb4a3125219233a.setIcon(icon_f138198d0a733ef648e8e6076c31b94b);
+            
+</script>
+</html>
