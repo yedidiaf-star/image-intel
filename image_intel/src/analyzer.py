@@ -27,7 +27,71 @@ fake_data = [
         "camera_make": None,
         "camera_model": None,
         "has_gps": False
+    },
+    {
+        "filename": "test4.jpg",
+        "datetime": "2025-01-13 14:12:45",
+        "latitude": 31.7683,
+        "longitude": 35.2137,
+        "camera_make": "Apple",
+        "camera_model": "iPhone 15",
+        "has_gps": True
+    },
+    {
+        "filename": "test5.jpg",
+        "datetime": "2025-01-14 19:05:10",
+        "latitude": 32.7940,
+        "longitude": 34.9896,
+        "camera_make": "Xiaomi",
+        "camera_model": "Mi 13",
+        "has_gps": True
+    },
+    {
+        "filename": "test6.jpg",
+        "datetime": "2025-01-15 07:45:22",
+        "latitude": 29.5577,
+        "longitude": 34.9519,
+        "camera_make": "Canon",
+        "camera_model": "EOS R6",
+        "has_gps": True
+    },
+    {
+        "filename": "test7.jpg",
+        "datetime": "2025-01-16 22:18:03",
+        "latitude": 32.3215,
+        "longitude": 34.8532,
+        "camera_make": "Nikon",
+        "camera_model": "D750",
+        "has_gps": True
+    },
+    {
+        "filename": "test8.jpg",
+        "datetime": "2025-01-17 11:02:37",
+        "latitude": 31.0461,
+        "longitude": 34.8516,
+        "camera_make": "Sony",
+        "camera_model": "Alpha A7 IV",
+        "has_gps": True
+    },
+    {
+        "filename": "test9.jpg",
+        "datetime": "2025-01-18 16:29:54",
+        "latitude": 33.0156,
+        "longitude": 35.2700,
+        "camera_make": "Samsung",
+        "camera_model": "Galaxy S22",
+        "has_gps": True
+    },
+    {
+        "filename": "test10.jpg",
+        "datetime": "2025-01-19 09:41:18",
+        "latitude": 32.1093,
+        "longitude": 34.8555,
+        "camera_make": "Apple",
+        "camera_model": "iPhone 14 Pro",
+        "has_gps": True
     }
+
 ]
 
 def sorted_dict(images_data):
@@ -113,14 +177,20 @@ def analyze(images_data):
 from geopy.geocoders import Nominatim
 
 def distance(image_data):
-    d_arr = []
-    for i in range(1,len(image_data)):
-        if image_data[i].get("latitude") and image_data[i].get("longitude") and image_data[i+1].get("latitude") and image_data[i+1].get("longitude") :
-            point1 = image_data[i]["latitude"],image_data[i]["longitude"]
-            point2 = image_data[i+1]["latitude"],image_data[i+1]["longitude"]
-            d = geodesic(point1, point2).kilometers
-            print(d)
-            d_arr.append(d)
-    return d_arr
+    distance_list = []
+    for i in range(len(image_data)):
+        if image_data[i].get("latitude") and image_data[i].get("longitude"):
+            for j in range(len(image_data)):
+                if i == j:
+                    continue
+                place = [image_data[i]["filename"]]
+                if image_data[j].get("latitude") and image_data[j].get("longitude"):
+                    point1 = image_data[i]["latitude"],image_data[i]["longitude"]
+                    point2 = image_data[j]["latitude"],image_data[j]["longitude"]
+                    if geodesic(point1, point2).kilometers < 1:
+                        distance_list.append(image_data[j]["filename"])
+        if len(place) > 1 and place not in distance_list:
+            distance_list.append(place)
+    return distance_list
 
 print(distance(fake_data))
