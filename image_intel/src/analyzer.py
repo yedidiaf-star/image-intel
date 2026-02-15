@@ -186,4 +186,3 @@ def analyze(images_data):
     dict_result["insights"] = radius_1(distance(images_data))
     return dict_result
 
-print(analyze(fake_data))

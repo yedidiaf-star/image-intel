@@ -1,5 +1,7 @@
 from extractor import extract_all
 from report import create_report
+from map_view import create_map
+from analyzer import analyze
 from flask import Flask, render_template, request
 import os
 
@@ -66,12 +68,14 @@ def analyze_images():
 
     # ה. שליחת הנתיב של התיקייה שלנו לשאר המודולים
     folder_path = os.path.abspath(UPLOAD_FOLDER)
+    print(folder_path)
 
     # מכאן הקוד ממשיך כרגיל לשאר הצוותים...
     images_data = extract_all(folder_path)
-    map_html = fake_create_map(images_data)
+    map_html = create_map(images_data)
     timeline_html = fake_create_timeline(images_data)
-    analysis = fake_analyze(images_data)
+    analysis = analyze(images_data)
+
     report_html = create_report(images_data, map_html, timeline_html, analysis)
 
     return report_html
