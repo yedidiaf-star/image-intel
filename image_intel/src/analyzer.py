@@ -1,4 +1,4 @@
-from geopy.geocoders import Nominatim
+from geopy.distance import geodesic
 
 fake_data = [
     {
@@ -80,27 +80,47 @@ def analyze(images_data):
         "unique_cameras": 0,
         "date_range": 0,
     }
-    count_im = 0
     count_gps = 0
     cameras = set()
 
 
 
     for image in images_data:
-        count_im += 1
         if image["has_gps"]:
             count_gps += 1
         if image.get("camera_model"):
             cameras.add(image["camera_model"])
-    dict_result["total_images"] = count_im
+    dict_result["total_images"] = len(images_data)
     dict_result["images_with_gps"] = count_gps
     dict_result["unique_cameras"] = cameras
-    dict_result["date_range"] = [sorted_images[0]["datetime"],sorted_images[-1]["datetime"]]
+    dict_result["date_range"] = [images_data[0]["datetime"],images_data[-1]["datetime"]]
 
     return dict_result
 
-def citis()
+# def cities(images_data):
+#     address = []
+#     geolocator = Nominatim(user_agent="geo_example")
+#     for image in images_data:
+#         latitude = image.get("latitude")
+#         longitude = image.get("longitude")
+#         if latitude and longitude:
+#             location =  geolocator.reverse((latitude, longitude), language='he')
+#             adrr = location.row['address']
+#             address.append(adrr)
+#     return address
+# print(cities(sorted_dict(fake_data)))
 
+from geopy.geocoders import Nominatim
 
+def distance(image_data):
+    d_arr = []
+    for i in range(1,len(image_data)):
+        if image_data[i].get("latitude") and image_data[i].get("longitude") and image_data[i+1].get("latitude") and image_data[i+1].get("longitude") :
+            point1 = image_data[i]["latitude"],image_data[i]["longitude"]
+            point2 = image_data[i+1]["latitude"],image_data[i+1]["longitude"]
+            d = geodesic(point1, point2).kilometers
+            print(d)
+            d_arr.append(d)
+    return d_arr
 
-print(analyze(fake_data))
+print(distance(fake_data))
