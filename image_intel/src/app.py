@@ -4,6 +4,7 @@ import os
 
 # הוספנו הגדרה מפורשת לתיקיית ה-templates
 app = Flask(__name__, template_folder='templates')
+UPLOAD_FOLDER = 'uploads' # שם התיקייה שבה נשמור את התמונות
 
 # --- פונקציות דמה (Fake) כדי שלא נצטרך לחכות לצוותים האחרים ---
 def fake_extract_all(folder_path):
@@ -47,34 +48,32 @@ def index():
 
 @app.route('/analyze', methods=['POST'])
 def analyze_images():
-    """הפונקציה הזו מופעלת כשהמשתמש לוחץ על 'נתח תמונות'"""
-    # מקבלים את הנתיב שהמשתמש הקליד
-    folder_path = request.form.get('folder_path')
+    # א. יצירת התיקייה בשרת אם היא לא קיימת
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-    # בודקים שהמשתמש באמת הכניס משהו
-    if not folder_path or not os.path.isdir(folder_path):
-        return "אנא הכנס נתיב לתיקייה", 400
+    # ב. משיכת רשימת הקבצים שהועלו מהדפדפן
+    uploaded_files = request.files.getlist('photos')
 
-    # כשהצוותים יסיימו, נחליף את הקידומת 'fake_' בייבוא האמיתי של הקבצים שלהם!
+    # ג. בדיקה שהמשתמש אכן בחר קבצים
+    if not uploaded_files or uploaded_files[0].filename == '':
+        return "שגיאה: לא נבחרו קבצים להעלאה", 400
 
-    # שלב 1: שליפת נתונים (צוות 1, זוג A)
+    # ד. לולאה ששומרת כל קובץ פיזית לתוך תיקיית ה-uploads
+    for file in uploaded_files:
+        file_path = os.path.join(UPLOAD_FOLDER, file.filename)
+        file.save(file_path)
+
+    # ה. שליחת הנתיב של התיקייה שלנו לשאר המודולים
+    folder_path = UPLOAD_FOLDER
+
+    # מכאן הקוד ממשיך כרגיל לשאר הצוותים...
     images_data = fake_extract_all(folder_path)
-
-    # שלב 2: יצירת מפה (צוות 1, זוג B)
     map_html = fake_create_map(images_data)
-
-    # שלב 3: ציר זמן (צוות 2, זוג A)
     timeline_html = fake_create_timeline(images_data)
-
-    # שלב 4: ניתוח (צוות 2, זוג B)
     analysis = fake_analyze(images_data)
-
-    # שלב 5: הרכבת דו"ח (צוות 3, זוג B - השותפים שלך לרביעייה!)
     report_html = create_report(images_data, map_html, timeline_html, analysis)
 
-    # מחזירים למשתמש את הדו"ח הסופי
     return report_html
-
 
 if __name__ == '__main__':
     # הפעלת השרת
