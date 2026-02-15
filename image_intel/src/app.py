@@ -1,11 +1,23 @@
 from extractor import extract_all
 from report import create_report
+from analyzer import analyze
+from  timeline import create_timeline
+from map_view import create_map
 from flask import Flask, render_template, request
 import os
 
 # הוספנו הגדרה מפורשת לתיקיית ה-templates
+
 app = Flask(__name__, template_folder='templates')
-UPLOAD_FOLDER = 'uploads' # שם התיקייה שבה נשמור את התמונות
+
+# --- השינוי הראשון: נתיב חכם לתיקיית images ---
+# __file__ הוא המיקום של app.py. אנחנו עולים שתי רמות למעלה כדי להגיע לתיקייה הראשית של הפרויקט
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# עכשיו אנחנו מחברים את הנתיב הראשי לתיקיית images/uploads
+
+UPLOAD_FOLDER = os.path.join(BASE_DIR, 'images', 'uploads')
 
 # --- פונקציות דמה (Fake) כדי שלא נצטרך לחכות לצוותים האחרים ---
 def fake_extract_all(folder_path):
@@ -42,10 +54,23 @@ def fake_create_report(images_data, map_html, timeline_html, analysis):
 # -----------------------------------------------------------
 
 @app.route('/')
+@app.route('/')
 def index():
-    """הפונקציה הזו מציגה את דף הבית (הטופס) כשנכנסים לאתר"""
-    return render_template('index.html')
+    """הפונקציה הזו מופעלת כשנכנסים לדף הבית. כאן נוסיף את הניקוי."""
 
+    # בודקים אם התיקייה בכלל קיימת
+    if os.path.exists(UPLOAD_FOLDER):
+        # עוברים על כל הקבצים שנמצאים כרגע בתיקייה
+        for filename in os.listdir(UPLOAD_FOLDER):
+            file_path = os.path.join(UPLOAD_FOLDER, filename)
+            try:
+                # מוודאים שזה באמת קובץ (ולא תיקייה פנימית) ומוחקים אותו
+                if os.path.isfile(file_path):
+                    os.remove(file_path)
+            except Exception as e:
+                print(f"שגיאה במחיקת קובץ: {e}")
+
+    return render_template('index.html')
 
 @app.route('/analyze', methods=['POST'])
 def analyze_images():
@@ -69,9 +94,9 @@ def analyze_images():
 
     # מכאן הקוד ממשיך כרגיל לשאר הצוותים...
     images_data = extract_all(folder_path)
-    map_html = fake_create_map(images_data)
-    timeline_html = fake_create_timeline(images_data)
-    analysis = fake_analyze(images_data)
+    map_html = create_map(images_data)
+    timeline_html = create_timeline(images_data)
+    analysis = analyze(images_data)
     report_html = create_report(images_data, map_html, timeline_html, analysis)
 
     return report_html
