@@ -51,33 +51,46 @@ def create_map(images_data):
         tooltip="מסלול כרונולוגי"
     ).add_to(m)
 
+    available_colors = ['red', 'blue', 'green', 'purple', 'orange', 'darkred', 'lightred', 'beige', 'darkblue',
+                        'darkgreen', 'cadetblue', 'darkpurple', 'pink', 'lightblue', 'lightgreen', 'gray', 'black']
+    device_color_map = {}
+    color_index = 0
 
-    for image in gps_image:
+    for idx, image in enumerate(gps_image, 1):
+        model = image.get("camera_model", "Unknown")
 
-        html = f"""
-                    <div style="font-family: sans-serif; width: 200px;">
-                        <h4>{image['filename']}</h4>
-                        <p><b>Time:</b> {image['datetime']}</p>
-                        <p><b>Device:</b> {image["camera_model"]}</p>
-                        <img src="{image['filename']}" width="180px" style="border-radius: 5px;">
-                    </div>
-                """
+        if model not in device_color_map:
+            device_color_map[model] = available_colors[color_index % len(available_colors)]
+        color_index += 1
+
+        chosen_color = device_color_map[model]
+
+        popup_html = f"""  <div style="font-family: sans-serif; width: 220px;">
+                        <h4 style="margin: 0 0 10px 0;">📷 {image['filename']}</h4>
+                         <p style="margin: 5px 0;"><b>Photo #:</b> {idx}</p> 
+                          <p style="margin: 5px 0;"><b>Time:</b> {image['datetime']}</p>
+                           <p style="margin: 5px 0;"><b>Device:</b> {model}</p>
+                           <p style="margin: 5px 0;"><b>Coordinates:</b><br>
+                            {image['latitude']:.6f}, {image['longitude']:.6f}</p> 
+                            </div>        """
         try:
             icon = folium.CustomIcon(
                 image["filename"],
                 icon_size=(45, 45)
             )
         except:
-            icon = folium.Icon(color="red", icon="info-sign")
 
-        folium.Marker(
-            location=[image["latitude"], image["longitude"]],
-            popup=folium.Popup(html, max_width=250),
-            icon=icon
-        ).add_to(m)
+            icon = folium.Icon(color=chosen_color, icon="camera", prefix="fa")
+
+        folium.Marker(location=[image["latitude"], image["longitude"]],
+                      popup=folium.Popup(popup_html, max_width=250),
+                      icon=icon,
+                      tooltip=f"{model} - {image['datetime']}"
+                      ).add_to(m)
 
 
 
     output_file = "my_photos_map.html"
     m.save(output_file)
     return m._repr_html_()
+print(create_map(fake_data))
