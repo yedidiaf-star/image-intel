@@ -62,7 +62,6 @@ def extract_metadata(image_path):
     for tag_id, value in exif.items():
         tag = TAGS.get(tag_id, tag_id)
         data[tag] = value
-    print(data)
     exif_dict = {
         "filename": path.name,
         "datetime": datatime(data),

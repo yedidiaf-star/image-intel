@@ -4,7 +4,7 @@ timeline.py - ציר זמן ויזואלי
 
 ראו docs/api_contract.md לפורמט הקלט והפלט.
 """
-
+import os
 def create_timeline(images_data):
     # סינון ומיון לפי תאריך
     dated_images = [img for img in images_data if img.get("datetime")]

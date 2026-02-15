@@ -93,4 +93,3 @@ def create_map(images_data):
     output_file = "my_photos_map.html"
     m.save(output_file)
     return m._repr_html_()
-print(create_map(fake_data))

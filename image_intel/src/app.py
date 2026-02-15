@@ -3,7 +3,7 @@ from report import create_report
 from map_view import create_map
 from analyzer import analyze
 from flask import Flask, render_template, request
-from map_view import create_map
+from timeline import create_timeline
 import os
 
 # הוספנו הגדרה מפורשת לתיקיית ה-templates
@@ -73,8 +73,9 @@ def analyze_images():
 
     # מכאן הקוד ממשיך כרגיל לשאר הצוותים...
     images_data = extract_all(folder_path)
+    print(len(images_data))
     map_html = create_map(images_data)
-    timeline_html = fake_create_timeline(images_data)
+    timeline_html = create_timeline(images_data)
     analysis = analyze(images_data)
 
     report_html = create_report(images_data, map_html, timeline_html, analysis)
